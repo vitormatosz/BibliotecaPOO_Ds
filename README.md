@@ -27,3 +27,17 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 6. Digitar no terminal code link da pasta
 
 construtor sempre tem mesmo nome da classe, sem class e sem retorno
+
+Criar as classes
+
+Usúario
+Livro
+
+1. Listar Acervo
+2. Listar usúarios
+3. Emprestar Livro
+4. Devolver item
+5. Cadastrar Livro
+6. cadastrar usúario
+0. Sair
+

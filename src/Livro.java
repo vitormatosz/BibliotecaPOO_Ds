@@ -1,8 +1,7 @@
 import java.util.Scanner;
 
-public class Usuario {
+public class Livro {
     private String nome;
     private String codigo;
-    private String documento;
-    private String email;
+    private String autor;
 }
