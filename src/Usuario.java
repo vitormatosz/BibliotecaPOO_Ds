@@ -9,6 +9,7 @@ public class Usuario {
     public Usuario(String nome, String email, String documento) {
     this.nome = nome;
     this.documento = documento;
+    this.email = email;
 }
 
     public String getNome(){
@@ -26,8 +27,6 @@ public class Usuario {
     public String getEmail(){
         return email;
     }
-
-    String[] acervoUsers = {nome};
 
 }
 

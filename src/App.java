@@ -1,10 +1,16 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner ler = new Scanner(System.in);
 
-        Usuario u1;
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        ArrayList<Livro> acervo = new ArrayList<>(); 
+
+        int totaluser = 0;
+
+        Usuario u1 = null;
         Livro l1;
 
         System.out.println("\n========================");
@@ -13,16 +19,17 @@ public class App {
 
         boolean rodando = true;
 
-        while (rodando) {
-            System.out.println("\n========================");
-            System.out.println("===       Menu       ===");
-            System.out.println("= 1. listar acervo     =");
-            System.out.println("= 2. listar usúarios   =");
-            System.out.println("= 3. Emprestar livro   =");
-            System.out.println("= 4. Devolver item     =");
-            System.out.println("= 5. Cadastrar Livro   =");
-            System.out.println("= 6. Cadastrar Usúario =");
-            System.out.println("= 0. Sair              =");
+        while (rodando) {  
+            System.out.println("\n============================");
+            System.out.println("===         Menu         ===");
+            System.out.println("=== 1. listar acervo     ===");
+            System.out.println("=== 2. listar usúarios   ===");
+            System.out.println("=== 3. Emprestar livro   ===");
+            System.out.println("=== 4. Devolver item     ===");
+            System.out.println("=== 5. Cadastrar Livro   ===");
+            System.out.println("=== 6. Cadastrar Usúario ===");
+            System.out.println("=== 0. Sair              ===");
+            System.out.println("============================");
 
             System.out.println("\nEscolha uma opção:");
             String opcao = ler.nextLine().trim();
@@ -32,7 +39,7 @@ public class App {
 
                     break;
                 case "2":
-
+                    System.out.println("Usuário: "+usuarios);
                     break;
                 case "3":
 
@@ -60,10 +67,18 @@ public class App {
 
                     System.out.print("Email: ");
                     String email = ler.nextLine();
+                    
+                    
 
                     u1 = new Usuario(name, document, email);
+                    usuarios.add(u1);
+                    totaluser++;
 
-                    System.out.println("Usuário: " + u1.getNome() + " Cadastrado!");
+                    for (int i = 0; i < usuarios.size(); i++) {
+                        System.out.println(usuarios.get(i).getNome());
+                    }
+
+                    System.out.println("Usuário: " + u1.getNome() + " Cadastrado!\n");
                     break;
                 case "0":
                     rodando = false;
