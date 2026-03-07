@@ -8,7 +8,6 @@ public class App {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         ArrayList<Livro> acervo = new ArrayList<>();
 
-        int contUser = 1;
         int contLivro = 1;
 
         System.out.println("╔══════════════════════════╗");
@@ -39,7 +38,9 @@ public class App {
                     System.out.println("\n================");
                     System.out.println("===  ACERVO  ===");
                     System.out.println("================");
+
                     for (int i = 0; i < acervo.size(); i++) {
+
                         System.out.println(
                                 contLivro + ". " + acervo.get(i).getNome() + " (" + acervo.get(i).getPublicacao() + ")"
                                         + " - " + acervo.get(i).getAutor() + " - L" + contLivro);
@@ -56,10 +57,13 @@ public class App {
 
                     for (int i = 0; i < usuarios.size(); i++) {
                         System.out.println(
-                                contUser + ". " + usuarios.get(i).getNome() + " - ID:" + usuarios.get(i).getCodigo());
+                                (i+1) + ". " + usuarios.get(i).getNome() + " - ID:" + usuarios.get(i).getCodigo());
 
-                        contUser++;
+                        System.out.println("Livros Emprestados");
+                        usuarios.get(i).mostrarLivros();
+                        System.out.println("------------------");
                     }
+
                     break;
 
                 case "3":
@@ -67,12 +71,89 @@ public class App {
                     System.out.println("===  EMPRESTAR LIVRO  ===");
                     System.out.println("=========================");
 
+                    System.out.println("===USUÁRIOS===");
+
+                    for (int i = 0; i < usuarios.size(); i++) {
+                        System.out.println(
+                                 (i+1)+ ". " + usuarios.get(i).getNome() + " - ID:" + usuarios.get(i).getCodigo());
+
+                    }
+
+                    System.out.println("Escolha um usuário: ");
+                    int opcaoUser = ler.nextInt();
+
+                    Usuario escolhido = usuarios.get(opcaoUser - 1); //cria objeto da classe/construtor Usuario que pega o usuario selecionado pelo indice/numero
+
+                    for (int i = 0; i < acervo.size(); i++) {
+                        System.out.println(
+                                (i+1)+ ". " + acervo.get(i).getNome() + " (" + acervo.get(i).getPublicacao() + ")"
+                                        + " - " + acervo.get(i).getAutor() + " - L" + contLivro);
+
+                        contLivro++;
+                    }
+
+                    System.out.println("Escolha uma opção de Livro:");
+                    int opcaoLivro = ler.nextInt();
+
+                    int indice = (opcaoLivro - 1);
+
+                    Livro livroEscolhido = acervo.get(indice); //cria objeto da classe Livro que é atribuido ao livro escolhido do acervo apartir do numero escolhido
+                    
+                    if (livroEscolhido.estaEmprestado() == false){
+
+                        livroEscolhido.emprestar(); //declara livro como emprestado
+                        escolhido.pegarLivros(livroEscolhido); //adiciona o livro escolhido no ArrayList livrosPegos
+                        System.out.println("Livro "+acervo.get(indice).getNome()+" Emprestado para "+escolhido.getNome());
+
+                    } else {
+                        System.out.println("Livro já emprestado!");
+                    }
+                
+
                     break;
 
                 case "4":
                     System.out.println("\n========================");
                     System.out.println("===  DEVOLVER LIVRO  ===");
                     System.out.println("========================");
+
+                    System.out.println("===USUÁRIOS===");
+
+                    for (int i = 0; i < usuarios.size(); i++) {
+                        System.out.println(
+                                 (i+1)+ ". " + usuarios.get(i).getNome() + " - ID:" + usuarios.get(i).getCodigo());
+
+                    }
+
+                    System.out.println("Escolha um usuário: ");
+                    int opcaoUsuario = ler.nextInt();
+
+                    Usuario Uescolhido = usuarios.get(opcaoUsuario - 1); //cria objeto da classe/construtor Usuario que pega o usuario selecionado pelo indice/numero
+
+                    for (int i = 0; i < acervo.size(); i++) {
+                        System.out.println(
+                                (i+1)+ ". " + acervo.get(i).getNome() + " (" + acervo.get(i).getPublicacao() + ")"
+                                        + " - " + acervo.get(i).getAutor() + " - L" + contLivro);
+
+                        contLivro++;
+                    }
+
+                    System.out.println("Escolha uma opção de Livro:");
+                    int opcaoDeLivro = ler.nextInt();
+
+                    int ind = (opcaoDeLivro - 1);
+
+                    Livro Lescolhido = acervo.get(ind); //cria objeto da classe Livro que é atribuido ao livro escolhido do acervo apartir do numero escolhido
+                    
+                    if (Lescolhido.estaEmprestado() == !false){
+
+                        Lescolhido.devolver(); //declara livro como emprestado
+                        Uescolhido.devolverLivros(Lescolhido); //adiciona o livro escolhido no ArrayList livrosPegos
+                        System.out.println("Livro "+acervo.get(ind).getNome()+" Devolvido pelo Usuario: "+Uescolhido.getNome());
+
+                    } else {
+                        System.out.println("Livro disponivel para empréstimo!");
+                    }
 
                     break;
 
