@@ -11,7 +11,7 @@ public class Usuario {
     Random gerador = new Random();
     int code;
 
-    public Usuario(String nome, String email, String documento) {
+    public Usuario(String nome, String documento, String email) {
         this.nome = nome;
         this.documento = documento;
         this.email = email;
@@ -25,25 +25,21 @@ public class Usuario {
         livrosPegos.remove(livro); // adiciona pra ArrayList livrosPegos
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public void mostrarLivros() { // metodo que mostra os livros emprestados dos usuairos
 
         for (int i = 0; i < livrosPegos.size(); i++) {
             System.out.println("- " + livrosPegos.get(i).getNome());
         }
 
+    } 
+    
+    public String getNome() {
+        return nome;
     }
 
     public String getCodigo() {
-        for (int j = 0; j < 5; j++) {
-            code = gerador.nextInt(10);
-        }
-
-        codigo = codigo + code;
-        return codigo;
+        codigo = documento;
+        return codigo.substring(0,5);
     }
 
     public String getDocumento() {

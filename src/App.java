@@ -39,13 +39,19 @@ public class App {
                     System.out.println("===  ACERVO  ===");
                     System.out.println("================");
 
+                    String status;
+
                     for (int i = 0; i < acervo.size(); i++) {
 
-                        System.out.println(
-                                contLivro + ". " + acervo.get(i).getNome() + " (" + acervo.get(i).getPublicacao() + ")"
-                                        + " - " + acervo.get(i).getAutor() + " - L" + contLivro);
+                        if (acervo.get(i).estaEmprestado()) {
+                            status = " - Em uso";
+                        } else {
+                            status = " - Disponivel";
+                        }
 
-                        contLivro++;
+                        System.out.println(
+                                (i+1) + ". " + acervo.get(i).getNome() + " (" + acervo.get(i).getPublicacao() + ")"
+                                        + " - " + acervo.get(i).getAutor() + " - L" + (i+1)+status);
                     }
 
                     break;
@@ -59,7 +65,7 @@ public class App {
                         System.out.println(
                                 (i+1) + ". " + usuarios.get(i).getNome() + " - ID:" + usuarios.get(i).getCodigo());
 
-                        System.out.println("Livros Emprestados");
+                        System.out.println("Livros Emprestados:");
                         usuarios.get(i).mostrarLivros();
                         System.out.println("------------------");
                     }
@@ -69,7 +75,7 @@ public class App {
                 case "3":
                     System.out.println("\n=========================");
                     System.out.println("===  EMPRESTAR LIVRO  ===");
-                    System.out.println("=========================");
+                    System.out.println("=========================\n");
 
                     System.out.println("===USUÁRIOS===");
 
@@ -84,9 +90,21 @@ public class App {
 
                     Usuario escolhido = usuarios.get(opcaoUser - 1); //cria objeto da classe/construtor Usuario que pega o usuario selecionado pelo indice/numero
 
+                    ler.nextLine();
+
+                    System.out.println("confirme o Documento do usuario: "+escolhido.getNome());
+                    String docConfirmar = ler.nextLine();
+
+                    if (docConfirmar.equals(escolhido.getDocumento())) {
+                        System.out.println("Documento Confirmado!");
+                    } else {
+                        System.out.println("Documento Negado!");
+                        break;
+                    }
+
                     for (int i = 0; i < acervo.size(); i++) {
                         System.out.println(
-                                (i+1)+ ". " + acervo.get(i).getNome() + " (" + acervo.get(i).getPublicacao() + ")"
+                                "\n"+(i+1)+ ". " + acervo.get(i).getNome() + " (" + acervo.get(i).getPublicacao() + ")"
                                         + " - " + acervo.get(i).getAutor() + " - L" + contLivro);
 
                         contLivro++;
@@ -115,27 +133,26 @@ public class App {
                 case "4":
                     System.out.println("\n========================");
                     System.out.println("===  DEVOLVER LIVRO  ===");
-                    System.out.println("========================");
+                    System.out.println("========================\n");
 
                     System.out.println("===USUÁRIOS===");
 
                     for (int i = 0; i < usuarios.size(); i++) {
+
                         System.out.println(
                                  (i+1)+ ". " + usuarios.get(i).getNome() + " - ID:" + usuarios.get(i).getCodigo());
 
                     }
 
-                    System.out.println("Escolha um usuário: ");
+                    System.out.println("Escolha um usuário e digite seu dpcumento: ");
                     int opcaoUsuario = ler.nextInt();
 
                     Usuario Uescolhido = usuarios.get(opcaoUsuario - 1); //cria objeto da classe/construtor Usuario que pega o usuario selecionado pelo indice/numero
 
                     for (int i = 0; i < acervo.size(); i++) {
                         System.out.println(
-                                (i+1)+ ". " + acervo.get(i).getNome() + " (" + acervo.get(i).getPublicacao() + ")"
-                                        + " - " + acervo.get(i).getAutor() + " - L" + contLivro);
-
-                        contLivro++;
+                                "\n"+(i+1)+ ". " + acervo.get(i).getNome() + " (" + acervo.get(i).getPublicacao() + ")"
+                                        + " - " + acervo.get(i).getAutor() + " - L" + (i+1));
                     }
 
                     System.out.println("Escolha uma opção de Livro:");
