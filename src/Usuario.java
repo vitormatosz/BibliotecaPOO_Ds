@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.ArrayList;
 
 public class Usuario {
@@ -7,9 +6,6 @@ public class Usuario {
     private String documento;
     private String email;
     ArrayList<Livro> livrosPegos = new ArrayList<>();
-
-    Random gerador = new Random();
-    int code;
 
     public Usuario(String nome, String documento, String email) {
         this.nome = nome;
@@ -26,20 +22,18 @@ public class Usuario {
     }
 
     public void mostrarLivros() { // metodo que mostra os livros emprestados dos usuairos
-
         for (int i = 0; i < livrosPegos.size(); i++) {
-            System.out.println("- " + livrosPegos.get(i).getNome());
+            System.out.println((1 + i) + ". " + livrosPegos.get(i).getNome());
         }
+    }
 
-    } 
-    
     public String getNome() {
         return nome;
     }
 
     public String getCodigo() {
         codigo = documento;
-        return codigo.substring(0,5);
+        return codigo.substring(0, 5);
     }
 
     public String getDocumento() {
