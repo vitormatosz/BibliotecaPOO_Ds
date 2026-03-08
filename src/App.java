@@ -27,6 +27,7 @@ public class App {
             System.out.println("║  5. Cadastrar Livro      ║");
             System.out.println("║  6. Cadastrar Usúario    ║");
             System.out.println("║  7. Deletar Usúario      ║");
+            System.out.println("║  8. Deletar Livro        ║");
             System.out.println("║  0. Sair                 ║");
             System.out.println("╚══════════════════════════╝");
 
@@ -181,7 +182,7 @@ public class App {
                     System.out.println("Livros Emprestados: ");
                     Uescolhido.mostrarLivros();
 
-                    System.out.println("Escolha uma opção de Livro para devolução e digite seu nome:");
+                    System.out.println("Digite o nome do livro para devolução:");
                     String opcaoDeLivro = ler.nextLine();
 
                     ler.nextLine();
@@ -190,14 +191,18 @@ public class App {
 
                         if (acervo.get(i).getNome().equals(opcaoDeLivro)) {
 
-                            Livro Lescolhido = acervo.get(i); // cria objeto da classe Livro que é atribuido ao livro escolhido do acervo apartir do numero escolhido
+                            Livro Lescolhido = acervo.get(i); // cria objeto da classe Livro que é atribuido ao livro
+                                                              // escolhido do acervo apartir de seu nome
 
                             if (Lescolhido.estaEmprestado() == true) {
 
-                                Lescolhido.devolver(); // usa o método devolver para declarar emprestado como false(livro disponivel pra emprestimo)
-                                Uescolhido.devolverLivros(Lescolhido); // retira o livro escolhido do ArrayList livrosPegos
+                                Lescolhido.devolver(); // usa o método devolver para declarar emprestado como
+                                                       // false(livro disponivel pra emprestimo)
+                                Uescolhido.devolverLivros(Lescolhido); // retira o livro escolhido do ArrayList
+                                                                       // livrosPegos
 
-                                System.out.println("Livro '" + Lescolhido.getNome() + "' devolvido pelo usuário: "+ Uescolhido.getNome());
+                                System.out.println("Livro '" + Lescolhido.getNome() + "' devolvido pelo usuário: "
+                                        + Uescolhido.getNome());
                                 break;
 
                             } else {
@@ -252,7 +257,7 @@ public class App {
                     System.out.println("===  DELETAR USUÁRIOS  ===");
                     System.out.println("==========================");
 
-                    System.out.println("Digite o nome ou ID do usuário");
+                    System.out.println("Digite o ID do usuário");
                     String infoUser = ler.nextLine();
 
                     for (int i = 0; i < usuarios.size(); i++) {
@@ -269,18 +274,50 @@ public class App {
                                 String docUser = ler.nextLine();
 
                                 if (usuarios.get(i).getDocumento().equals(docUser)) {
-                                    System.out.println("Documento confirmado!");
+                                    System.out.println("Documento confirmado!\n");
 
-                                    System.out.println("Adeus " + usuarios.get(i).getNome());
+                                    System.out.println("Adeus " + usuarios.get(i).getNome() + "!");
                                     usuarios.remove(usuarios.get(i));
                                     break;
                                 } else {
-                                    System.out.println("Documento não encontrado");
+                                    System.out.println("Documento não encontrado!");
                                 }
                             } else {
                                 System.out.println("Email não encontrado!");
-
                             }
+                        } else {
+                            System.out.println("Usuário não encontrado!");
+
+                        }
+                    }
+
+                    break;
+
+                case "8":
+                    System.out.println("\n========================");
+                    System.out.println("===  DELETAR LIVROS  ===");
+                    System.out.println("========================");
+
+                    System.out.println("Digite o nome do livro");
+                    String infoLivro = ler.nextLine();
+
+                    for (int i = 0; i < acervo.size(); i++) {
+
+                        if (acervo.get(i).getNome().equals(infoLivro)) {
+                            Livro livroSelecionado = acervo.get(i); 
+                            System.out.println("Livro existente!");
+
+                            System.out.println("Deseja excluir livro do acervo (Sim ou Não)");
+                            String resposta = ler.nextLine();
+
+                            if (resposta.equals("Sim")) {
+                                System.out.println("Livro '"+livroSelecionado.getNome()+"' Removido do Acervo");
+                                acervo.remove(livroSelecionado);
+                                break;
+                            } else {
+                                break;
+                            }
+
                         } else {
                             System.out.println("Usuário não encontrado!");
 
