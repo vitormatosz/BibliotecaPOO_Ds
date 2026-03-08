@@ -92,7 +92,7 @@ public class App {
 
                     ler.nextLine();
 
-                    System.out.println("confirme o Documento do usuario: "+escolhido.getNome());
+                    System.out.println("Confirme o Documento do Usuário: "+escolhido.getNome());
                     String docConfirmar = ler.nextLine();
 
                     if (docConfirmar.equals(escolhido.getDocumento())) {
@@ -148,6 +148,19 @@ public class App {
                     int opcaoUsuario = ler.nextInt();
 
                     Usuario Uescolhido = usuarios.get(opcaoUsuario - 1); //cria objeto da classe/construtor Usuario que pega o usuario selecionado pelo indice/numero
+
+                    ler.nextLine();
+
+                    System.out.println("Confirme o Documento do Usuário: "+Uescolhido.getNome());
+                    String docConfirme = ler.nextLine();
+
+                    if (docConfirme.equals(Uescolhido.getDocumento())) {
+                        System.out.println("Documento Confirmado!");
+                    } else {
+                        System.out.println("Documento Negado!");
+                        break;
+                    }
+
 
                     for (int i = 0; i < acervo.size(); i++) {
                         System.out.println(
