@@ -27,6 +27,10 @@ public class Usuario {
         }
     }
 
+    public void arrayList(){
+
+    }
+
     public String getNome() {
         return nome;
     }
@@ -42,6 +46,6 @@ public class Usuario {
 
     public String getEmail() {
         return email;
-    }
+    } 
 
 }
