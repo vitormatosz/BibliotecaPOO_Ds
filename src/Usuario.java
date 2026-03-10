@@ -23,12 +23,16 @@ public class Usuario {
 
     public void mostrarLivros() { // metodo que mostra os livros emprestados dos usuairos
         for (int i = 0; i < livrosPegos.size(); i++) {
-            System.out.println((1 + i) + ". " + livrosPegos.get(i).getNome());
-        }
+                System.out.println((i + 1) + ". " + livrosPegos.get(i).getNome());
+            }
     }
 
-    public void arrayList(){
+    public void conferirDupli(String documente){
+        
+    }
 
+    public ArrayList<Livro> getLivrosPegos() {
+        return livrosPegos;
     }
 
     public String getNome() {
@@ -46,6 +50,6 @@ public class Usuario {
 
     public String getEmail() {
         return email;
-    } 
+    }
 
 }
